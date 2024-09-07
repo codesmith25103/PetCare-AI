@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetCare AI</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Merriweather:wght@700&family=Pacifico&display=swap">
 </head>
 <body>
@@ -28,27 +28,29 @@
             <button onclick="scrollToSymptomChecker()">Get Started</button>
         </div>
         <div class="hero-image">
-            <img src="pngimg.com - cow_PNG50585.png" alt="Pets" />
+            <img src="static/pngimg.com - cow_PNG50585.png" alt="Pets" />
         </div>
         <div class="hero-image">
-            <img src="cow_PNG2126.png.crdownload" alt="Pets" />
+            <img src="/static/cow_PNG50606.png" alt="Pets" />
         </div>
     </section>
 
-    <!-- Symptom Checker Section -->
-    <section id="symptom-checker" class="symptom-section">
-        <h2>AI-Powered Symptom Checker</h2>
-        <p>Enter your pet's symptoms, and our AI will analyze them to suggest possible conditions and urgency levels. You can also upload a picture for a more detailed analysis.</p>
-        <form>
-            <label for="symptoms">Pet's Symptoms:</label>
-            <textarea id="symptoms" placeholder="Describe your pet's symptoms"></textarea>
-            
-            <label for="pet-image">Upload Pet's Picture:</label>
-            <input type="file" id="pet-image" accept="image/*">
-            
-            <button type="submit">Check Symptoms</button>
-        </form>
-    </section>
+   <!-- Symptom Checker Section -->
+<section id="symptom-checker" class="symptom-section">
+    <h2>AI-Powered Symptom Checker</h2>
+    <p>Enter your pet's symptoms, and our AI will analyze them to suggest possible conditions and urgency levels. You can also upload a picture for a more detailed analysis.</p>
+    <form id="symptom-form" enctype="multipart/form-data">
+        <label for="symptoms">Pet's Symptoms:</label>
+        <textarea id="symptoms" placeholder="Describe your pet's symptoms"></textarea>
+        
+        <label for="pet-image">Upload Pet's Picture:</label>
+        <input type="file" id="pet-image" name="pet-image" accept="image/*">
+        
+        <button type="submit">Check Symptoms</button>
+    </form>
+    <div id="result"></div>
+</section>
+
 
     <!-- Treatment Section -->
     <section id="treatment" class="treatment-section">
@@ -75,6 +77,6 @@
         <p>Made by team Warriors</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="static/script.js"></script>
 </body>
 </html>
