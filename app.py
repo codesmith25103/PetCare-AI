@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 # # Load models for different pet types
 models = {}
-for pet_type in ['hen', 'cat']:
+for pet_type in ['hen', 'cat', 'cow', 'dog']:
     with open(f'{pet_type}_model.pkl', 'rb') as f:
         model_dict = pickle.load(f)
         model = model_from_json(model_dict['architecture'])
