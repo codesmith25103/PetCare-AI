@@ -41,8 +41,16 @@
     <p>Enter your pet's symptoms, and our AI will analyze them to suggest possible conditions and urgency levels. You can also upload a picture for a more detailed analysis.</p>
     <form id="symptom-form" enctype="multipart/form-data">
         <label for="symptoms">Pet's Symptoms:</label>
-        <textarea id="symptoms" placeholder="Describe your pet's symptoms"></textarea>
-        
+        <textarea id="symptoms" name="symptoms" placeholder="Describe your pet's symptoms"></textarea>
+
+        <label for="pet-type">Choose your pet type:</label>
+        <select id="pet-type" name="pet-type">
+            <option value="hen">Hen</option>
+            <option value="cow">Cow</option>
+            <option value="cat">Cat</option>
+            <option value="dog">Dog</option>
+        </select>
+
         <label for="pet-image">Upload Pet's Picture:</label>
         <input type="file" id="pet-image" name="pet-image" accept="image/*">
         
@@ -50,6 +58,7 @@
     </form>
     <div id="result"></div>
 </section>
+
 
 
     <!-- Treatment Section -->
@@ -76,7 +85,25 @@
         <p>Contact us: imlata1111@gmail.com | Follow us on social media</p>
         <p>Made by team Warriors</p>
     </footer>
+    <script>
+        document.getElementById('symptom-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
 
-    <script src="static/script.js"></script>
+            var formData = new FormData(this);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = data.result;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = 'An error occurred.';
+            });
+        });
+    </script>
 </body>
 </html>
