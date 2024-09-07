@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCare AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1>PetCare AI</h1>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#symptom-checker">Symptom Checker</a></li>
+            <li><a href="#treatment">Treatment</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome to PetCare AI</h2>
+            <p>Your trusted AI-powered platform for pet health diagnostics and treatment recommendations.</p>
+            <button onclick="scrollToSymptomChecker()">Get Started</button>
+        </div>
+        <div class="hero-image">
+            <img src="pets.jpg" alt="Pets" />
+        </div>
+    </section>
+
+    <!-- Symptom Checker Section -->
+    <section id="symptom-checker" class="symptom-section">
+        <h2>AI-Powered Symptom Checker</h2>
+        <p>Enter your pet's symptoms, and our AI will analyze them to suggest possible conditions and urgency levels.</p>
+        <form>
+            <label for="symptoms">Pet's Symptoms:</label>
+            <textarea id="symptoms" placeholder="Describe your pet's symptoms"></textarea>
+            <button type="submit">Check Symptoms</button>
+        </form>
+    </section>
+
+    <!-- Treatment Section -->
+    <section id="treatment" class="treatment-section">
+        <h2>Medication & Treatment Recommendations</h2>
+        <p>Based on the diagnosis and medical history, we suggest treatments and medications.</p>
+        <div class="treatment-cards">
+            <!-- Cards with AI-based recommendations -->
+            <div class="card">
+                <h3>Condition: Fever</h3>
+                <p>Suggested Medication: PetParacetamol</p>
+                <p>Dosage: 5ml every 6 hours</p>
+            </div>
+            <div class="card">
+                <h3>Condition: Skin Irritation</h3>
+                <p>Suggested Treatment: Aloe Vera Cream</p>
+                <p>Application: Apply twice daily</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Contact us: info@petcareai.com | Follow us on social media</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

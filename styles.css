@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #F9F7F7;
+    color: #333;
+}
+
+.navbar {
+    background-color: #112D4E;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-left: 20px;
+}
+
+.navbar ul li a {
+    color: #DBE2EF;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #112D4E;
+    color: white;
+    padding: 50px;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+}
+
+.hero-content button {
+    padding: 10px 20px;
+    background-color: #3F72AF;
+    border: none;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.symptom-section {
+    padding: 50px;
+    background-color: #DBE2EF;
+    text-align: center;
+}
+
+.symptom-section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #112D4E;
+}
+
+.symptom-section p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.symptom-section form {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.symptom-section textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.symptom-section button {
+    padding: 10px 20px;
+    background-color: #3F72AF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.treatment-section {
+    padding: 50px;
+    background-color: #F9F7F7;
+    text-align: center;
+}
+
+.treatment-section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #112D4E;
+}
+
+.treatment-section .treatment-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.treatment-section .card {
+    background-color: #DBE2EF;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+    background-color: #112D4E;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
