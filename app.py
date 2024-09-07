@@ -37,7 +37,17 @@ dict_hen={
     2:"MarekDisease",
     3:"Normal"
 }
-
+dict_cow={
+    
+0:'Actinomycosis Lumpy Jaw ',
+1: 'Bovine Papillomatosis', 
+2:'foot and mouth disease', 
+3:'healthy', 
+4:'lumpy skin dsease'
+}
+dict_dog={
+    0:'Conjunctivitis1',1: 'Mange',2: 'Ringworm',3: 'Ticks',4: 'healthy'
+}
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -77,6 +87,10 @@ def upload_file():
             return jsonify({'result': f'Predicted class: {dict_cat[predicted_class]}'})
         if pet_type=="hen":
             return jsonify({'result': f'Predicted class: {dict_hen[predicted_class]}'})
+        if pet_type=="dog":
+            return jsonify({'result': f'Predicted class: {dict_dog[predicted_class]}'})
+        if pet_type=="cow":
+            return jsonify({'result': f'Predicted class: {dict_cow[predicted_class]}'})
         
         return jsonify({'result': f'Predicted class: {predicted_class}'})
 
