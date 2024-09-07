@@ -9,20 +9,34 @@ from PIL import Image
 app = Flask(__name__)
 
 # # Load models for different pet types
-# models = {}
-# for pet_type in ['hen', 'cow', 'cat', 'dog']:
-#     with open(f'{pet_type.capitalize()}_model.pkl', 'rb') as f:
-#         model_dict = pickle.load(f)
-#         model = model_from_json(model_dict['architecture'])
-#         model.set_weights(model_dict['weights'])
-#         models[pet_type] = model
+models = {}
+for pet_type in ['hen', 'cat']:
+    with open(f'{pet_type}_model.pkl', 'rb') as f:
+        model_dict = pickle.load(f)
+        model = model_from_json(model_dict['architecture'])
+        model.set_weights(model_dict['weights'])
+        models[pet_type] = model
 
 # Load the pre-trained model
-with open('Hen_model.pkl', 'rb') as f:
-    model_dict = pickle.load(f)
-    model = model_from_json(model_dict['architecture'])
-    model.set_weights(model_dict['weights'])
+# with open('Hen_model.pkl', 'rb') as f:
+#     model_dict = pickle.load(f)
+#     model = model_from_json(model_dict['architecture'])
+#     model.set_weights(model_dict['weights'])
 
+['AvianPox', 'FowlCholera', 'MarekDisease', 'Normal']
+# ['Feline_Dermatophytosis', 'Mange', 'NormalCat', 'feline_acne']
+dict_cat={
+    0:"Feline Dermatophytosis",
+    1:"Mange",
+    2:"Healthy Cat",
+    3:"Feline Acne"
+}
+dict_hen={
+    0:"AvianPox",
+    1:"FowlCholera",
+    2:"MarekDisease",
+    3:"Normal"
+}
 
 @app.route('/')
 def home():
@@ -57,7 +71,13 @@ def upload_file():
         # Make prediction
         prediction = model.predict(image_array)
         predicted_class = np.argmax(prediction[0])
-
+        ans=""
+        print(pet_type)
+        if pet_type=="cat":
+            return jsonify({'result': f'Predicted class: {dict_cat[predicted_class]}'})
+        if pet_type=="hen":
+            return jsonify({'result': f'Predicted class: {dict_hen[predicted_class]}'})
+        
         return jsonify({'result': f'Predicted class: {predicted_class}'})
 
     return jsonify({'result': 'No image file provided'}), 400
