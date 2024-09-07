@@ -23,6 +23,7 @@ with open('Hen_model.pkl', 'rb') as f:
     model = model_from_json(model_dict['architecture'])
     model.set_weights(model_dict['weights'])
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
