@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetCare AI</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Merriweather:wght@700&family=Pacifico&display=swap">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -23,21 +24,28 @@
     <section class="hero">
         <div class="hero-content">
             <h2>Welcome to PetCare AI</h2>
-            <p>Your trusted AI-powered platform for pet health diagnostics and treatment recommendations.</p>
+            <p>Your trusted AI-powered platform for diagnosing your pet’s health and recommending treatments. Whether you have a dog, cat, cow, buffalo, or hen, PetCare AI caters to all types of pets. Especially helpful for farmers in India who rely on livestock like cows and buffaloes, ensuring timely care for their animals.</p>
             <button onclick="scrollToSymptomChecker()">Get Started</button>
         </div>
         <div class="hero-image">
-            <img src="pets.jpg" alt="Pets" />
+            <img src="pngimg.com - cow_PNG50585.png" alt="Pets" />
+        </div>
+        <div class="hero-image">
+            <img src="cow_PNG2126.png.crdownload" alt="Pets" />
         </div>
     </section>
 
     <!-- Symptom Checker Section -->
     <section id="symptom-checker" class="symptom-section">
         <h2>AI-Powered Symptom Checker</h2>
-        <p>Enter your pet's symptoms, and our AI will analyze them to suggest possible conditions and urgency levels.</p>
+        <p>Enter your pet's symptoms, and our AI will analyze them to suggest possible conditions and urgency levels. You can also upload a picture for a more detailed analysis.</p>
         <form>
             <label for="symptoms">Pet's Symptoms:</label>
             <textarea id="symptoms" placeholder="Describe your pet's symptoms"></textarea>
+            
+            <label for="pet-image">Upload Pet's Picture:</label>
+            <input type="file" id="pet-image" accept="image/*">
+            
             <button type="submit">Check Symptoms</button>
         </form>
     </section>
@@ -62,8 +70,9 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p>Contact us: info@petcareai.com | Follow us on social media</p>
+    <footer class="footer">
+        <p>Contact us: imlata1111@gmail.com | Follow us on social media</p>
+        <p>Made by team Warriors</p>
     </footer>
 
     <script src="script.js"></script>
