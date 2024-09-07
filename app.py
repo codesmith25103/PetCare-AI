@@ -1,27 +1,18 @@
 from flask import Flask, render_template, request, jsonify
-import numpy as np
-import tensorflow as tf
-from PIL import Image
-import io
+from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.densenet import preprocess_input
+from tensorflow.keras.models import model_from_json
+import numpy as np
+import pickle
+from PIL import Image
 
 app = Flask(__name__)
 
-# Load the model
-model = tf.keras.models.load_model('/home/lata/Desktop/PetCare-AI/Cows.h5')
-
-# Load class names from a text file or predefined list
-class_names = []
-with open('/home/lata/Desktop/PetCare-AI/class_names.txt', 'r') as f:
-    class_names = [line.strip() for line in f]
-
-# Preprocessing function
-def preprocess_image(image):
-    image = image.resize((224, 224))  # Resize to model input size
-    image_array = np.array(image)      # Convert to numpy array
-    image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
-    image_array = preprocess_input(image_array)  # Preprocess for DenseNet121
-    return image_array
+# Load the pre-trained model
+with open('Hen_model.pkl', 'rb') as f:
+    model_dict = pickle.load(f)
+    model = model_from_json(model_dict['architecture'])
+    model.set_weights(model_dict['weights'])
 
 @app.route('/')
 def home():
@@ -33,26 +24,22 @@ def upload_file():
         return jsonify({'result': 'No image uploaded'}), 400
 
     file = request.files['pet-image']
-    symptoms = request.form.get('symptoms', '')
 
     if file:
-        try:
-            image = Image.open(io.BytesIO(file.read()))
-            image_array = preprocess_image(image)
-            prediction = model.predict(image_array)
-            class_idx = np.argmax(prediction, axis=1)[0]
-            
-            # Ensure class_names are correctly mapped
-            predicted_class = class_names[class_idx]
-            
-            result = f'Predicted class: {predicted_class}'
-            
-            if symptoms:
-                result += f'\nSymptoms provided: {symptoms}'
+        # Convert file to an image
+        image = Image.open(file.stream)
+        
+        # Resize and preprocess the image
+        image = image.resize((224, 224))
+        image_array = img_to_array(image)
+        image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
+        image_array = preprocess_input(image_array)
 
-            return jsonify({'result': result})
-        except Exception as e:
-            return jsonify({'result': f'Error processing image: {str(e)}'}), 500
+        # Make prediction
+        prediction = model.predict(image_array)
+        predicted_class = np.argmax(prediction[0])
+
+        return jsonify({'result': f'Predicted class: {predicted_class}'})
 
     return jsonify({'result': 'No image file provided'}), 400
 
