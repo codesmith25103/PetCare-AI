@@ -8,6 +8,15 @@ from PIL import Image
 
 app = Flask(__name__)
 
+# # Load models for different pet types
+# models = {}
+# for pet_type in ['hen', 'cow', 'cat', 'dog']:
+#     with open(f'{pet_type.capitalize()}_model.pkl', 'rb') as f:
+#         model_dict = pickle.load(f)
+#         model = model_from_json(model_dict['architecture'])
+#         model.set_weights(model_dict['weights'])
+#         models[pet_type] = model
+
 # Load the pre-trained model
 with open('Hen_model.pkl', 'rb') as f:
     model_dict = pickle.load(f)
@@ -23,7 +32,16 @@ def upload_file():
     if 'pet-image' not in request.files:
         return jsonify({'result': 'No image uploaded'}), 400
 
+    if 'pet-type' not in request.form:
+        return jsonify({'result': 'No pet type selected'}), 400
+
+    pet_type = request.form['pet-type']
     file = request.files['pet-image']
+
+    if pet_type not in models:
+        return jsonify({'result': 'Invalid pet type selected'}), 400
+
+    model = models[pet_type]
 
     if file:
         # Convert file to an image
